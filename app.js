@@ -1,0 +1,51 @@
+const form = document.getElementById('meal-form');
+const mealNameInput = document.getElementById('meal-name');
+const mealCaloriesInput = document.getElementById('meal-calories');
+const mealList = document.getElementById('meal-list');
+const totalCaloriesSpan = document.getElementById('total-calories');
+
+let meals = JSON.parse(localStorage.getItem('meals')) || [];
+
+function renderMeals() {
+  mealList.innerHTML = '';
+  let total = 0;
+
+  meals.forEach((meal, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${meal.name} - ${meal.calories} kcal`;
+
+    const btn = document.createElement('button');
+    btn.textContent = 'X';
+    btn.onclick = () => {
+      meals.splice(index, 1);
+      saveAndRender();
+    };
+
+    li.appendChild(btn);
+    mealList.appendChild(li);
+
+    total += meal.calories;
+  });
+
+  totalCaloriesSpan.textContent = total;
+}
+
+function saveAndRender() {
+  localStorage.setItem('meals', JSON.stringify(meals));
+  renderMeals();
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = mealNameInput.value.trim();
+  const calories = Number(mealCaloriesInput.value);
+
+  if (!name || !calories) return;
+
+  meals.push({ name, calories });
+  mealNameInput.value = '';
+  mealCaloriesInput.value = '';
+  saveAndRender();
+});
+
+renderMeals();
