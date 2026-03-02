@@ -35,3 +35,24 @@ const weeklyDiet = {
     { name: "Cena: Minestrone + crostini", calories: 350 }
   ]
 };
+
+const mealList = document.getElementById("meal-list");
+const totalCaloriesSpan = document.getElementById("total-calories");
+
+document.getElementById("load-diet").addEventListener("click", () => {
+  const day = document.getElementById("day-select").value;
+  if (!day) return;
+
+  const meals = weeklyDiet[day];
+  mealList.innerHTML = "";
+  let total = 0;
+
+  meals.forEach(meal => {
+    const li = document.createElement("li");
+    li.textContent = `${meal.name} — ${meal.calories} kcal`;
+    mealList.appendChild(li);
+    total += meal.calories;
+  });
+
+  totalCaloriesSpan.textContent = total;
+});
