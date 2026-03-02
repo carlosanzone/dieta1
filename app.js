@@ -1,4 +1,4 @@
-// DIETE COMPLETE
+// DIETE
 const diets = {
   Carlo: {
     "Lunedì": [
@@ -49,68 +49,4 @@ document.getElementById("load-diet").addEventListener("click", () => {
   });
 
   totalCaloriesSpan.textContent = total;
-});
-
-// LISTA SPESA
-const shoppingList = {
-  Proteine: [
-    "Pollo: 2,45 kg",
-    "Tacchino: 370 g",
-    "Merluzzo: 370 g",
-    "Salmone: 370 g",
-    "Carne magra: 350 g",
-    "Tonno: 280 g",
-    "Uova: 28"
-  ],
-  Carboidrati: [
-    "Pasta integrale: 120 g",
-    "Pasta normale: 360 g",
-    "Riso basmati: 200 g",
-    "Cous cous: 200 g",
-    "Pane integrale: 15 fette",
-    "Avena: 250 g",
-    "Biscotti integrali: 9"
-  ],
-  Verdure: [
-    "Verdure miste: 5,5 kg",
-    "Insalata: 5 buste",
-    "Patate: 620 g",
-    "Zuppa di legumi: 600 g",
-    "Mais: 1 scatola"
-  ],
-  Latticini: [
-    "Yogurt: 3,3 kg",
-    "Ricotta: 100 g",
-    "Feta: 180 g",
-    "Formaggio leggero: 40 g"
-  ],
-  Frutta: [
-    "Frutta mista: 3,5 kg",
-    "Banane: 6"
-  ],
-  Altro: [
-    "Olio EVO: 2 bottiglie",
-    "Marmellata: 1 vasetto",
-    "Miele: 1 vasetto",
-    "Semi: 50 g",
-    "Crostini: 2 confezioni"
-  ]
-};
-
-// MOSTRA LISTA SPESA
-document.getElementById("show-shopping").addEventListener("click", () => {
-  const list = document.getElementById("shopping-list");
-  list.innerHTML = "";
-
-  Object.keys(shoppingList).forEach(category => {
-    const title = document.createElement("h3");
-    title.textContent = category;
-    list.appendChild(title);
-
-    shoppingList[category].forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      list.appendChild(li);
-    });
-  });
 });
