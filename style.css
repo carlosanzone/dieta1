@@ -4,18 +4,15 @@ body {
   margin: 20px auto;
 }
 
-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+h1 {
+  text-align: center;
 }
 
-input, button {
+select, button {
   padding: 8px;
+  margin: 10px 0;
 }
 
 #meal-list li {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
