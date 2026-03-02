@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dieta settimanale</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Dieta settimanale</h1>
+
+  <select id="day-select">
+    <option value="">Seleziona un giorno</option>
+    <option value="Lunedì">Lunedì</option>
+    <option value="Martedì">Martedì</option>
+    <option value="Mercoledì">Mercoledì</option>
+    <option value="Giovedì">Giovedì</option>
+    <option value="Venerdì">Venerdì</option>
+    <option value="Sabato">Sabato</option>
+    <option value="Domenica">Domenica</option>
+  </select>
+
+  <button id="load-diet">Carica dieta del giorno</button>
+
+  <h2>Pasti del giorno</h2>
+  <ul id="meal-list"></ul>
+
+  <h3>Totale calorie: <span id="total-calories">0</span></h3>
+
+  <script src="app.js"></script>
+</body>
+</html>
