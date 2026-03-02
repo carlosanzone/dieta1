@@ -1,3 +1,4 @@
+// DIETE COMPLETE
 const diets = {
   Carlo: {
     "Lunedì": [
@@ -76,6 +77,7 @@ const diets = {
   }
 };
 
+// CARICA DIETA
 document.getElementById("load-diet").addEventListener("click", () => {
   const person = document.getElementById("person-select").value;
   const day = document.getElementById("day-select").value;
@@ -97,4 +99,123 @@ document.getElementById("load-diet").addEventListener("click", () => {
   });
 
   totalCaloriesSpan.textContent = total;
+});
+
+// CALORIE SETTIMANALI PER GRAFICO
+const weeklyCalories = {
+  Carlo: {
+    "Lunedì": 420 + 780 + 520,
+    "Martedì": 420 + 650 + 520,
+    "Mercoledì": 420 + 750 + 520,
+    "Giovedì": 380 + 700 + 520,
+    "Venerdì": 420 + 780 + 600,
+    "Sabato": 420 + 780 + 550,
+    "Domenica": 420 + 820 + 500
+  },
+  Dona: {
+    "Lunedì": 320 + 600 + 520,
+    "Martedì": 320 + 500 + 420,
+    "Mercoledì": 350 + 550 + 450,
+    "Giovedì": 300 + 520 + 450,
+    "Venerdì": 320 + 550 + 450,
+    "Sabato": 350 + 550 + 450,
+    "Domenica": 300 + 600 + 350
+  }
+};
+
+// GRAFICO
+function drawChart() {
+  const ctx = document.getElementById("calorieChart").getContext("2d");
+
+  if (window.calorieChart) window.calorieChart.destroy();
+
+  window.calorieChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato","Domenica"],
+      datasets: [
+        {
+          label: "Carlo",
+          data: Object.values(weeklyCalories.Carlo),
+          borderColor: "#2a7f62",
+          backgroundColor: "rgba(42,127,98,0.2)",
+          borderWidth: 3
+        },
+        {
+          label: "Dona",
+          data: Object.values(weeklyCalories.Dona),
+          borderColor: "#ff7f50",
+          backgroundColor: "rgba(255,127,80,0.2)",
+          borderWidth: 3
+        }
+      ]
+    },
+    options: { responsive: true }
+  });
+}
+
+drawChart();
+
+// LISTA SPESA
+const shoppingList = {
+  Proteine: [
+    "Pollo: 2,45 kg",
+    "Tacchino: 370 g",
+    "Merluzzo: 370 g",
+    "Salmone: 370 g",
+    "Carne magra: 350 g",
+    "Tonno: 280 g",
+    "Uova: 28"
+  ],
+  Carboidrati: [
+    "Pasta integrale: 120 g",
+    "Pasta normale: 360 g",
+    "Riso basmati: 200 g",
+    "Cous cous: 200 g",
+    "Pane integrale: 15 fette",
+    "Avena: 250 g",
+    "Biscotti integrali: 9"
+  ],
+  Verdure: [
+    "Verdure miste: 5,5 kg",
+    "Insalata: 5 buste",
+    "Patate: 620 g",
+    "Zuppa di legumi: 600 g",
+    "Mais: 1 scatola"
+  ],
+  Latticini: [
+    "Yogurt: 3,3 kg",
+    "Ricotta: 100 g",
+    "Feta: 180 g",
+    "Formaggio leggero: 40 g"
+  ],
+  Frutta: [
+    "Frutta mista: 3,5 kg",
+    "Banane: 6"
+  ],
+  Altro: [
+    "Olio EVO: 2 bottiglie",
+    "Marmellata: 1 vasetto",
+    "Miele: 1 vasetto",
+    "Semi: 50 g",
+    "Crostini: 2 confezioni"
+  ]
+};
+
+// MOSTRA LISTA SPESA
+document.getElementById("show-shopping").addEventListener("click", () => {
+  const list = document.getElementById("shopping-list");
+  list.innerHTML = "";
+
+  Object.keys(shoppingList).forEach(category => {
+    const title = document.createElement("h3");
+    title.textContent = category;
+    list.appendChild(title);
+
+    shoppingList[category].forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+  });
 });
