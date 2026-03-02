@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Diet Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>La mia dieta</h1>
+
+  <form id="meal-form">
+    <input type="text" id="meal-name" placeholder="Pasto (es. Colazione)" required />
+    <input type="number" id="meal-calories" placeholder="Calorie" required />
+    <button type="submit">Aggiungi</button>
+  </form>
+
+  <h2>Oggi</h2>
+  <ul id="meal-list"></ul>
+
+  <h3>Totale calorie: <span id="total-calories">0</span></h3>
+
+  <script src="app.js"></script>
+</body>
+</html>
