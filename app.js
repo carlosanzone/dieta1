@@ -219,3 +219,4 @@ document.getElementById("show-shopping").addEventListener("click", () => {
     });
   });
 });
+
