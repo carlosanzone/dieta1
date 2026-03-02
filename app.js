@@ -1,5 +1,5 @@
 const diets = {
-  carlo: {
+  Carlo: {
     "Lunedì": [
       { name: "Colazione: Yogurt 200g + banana + avena 30g", calories: 350 },
       { name: "Pranzo: Pasta integrale 80g + pollo 150g + verdure", calories: 600 },
@@ -37,7 +37,7 @@ const diets = {
     ]
   },
 
-  dona: {
+  Dona: {
     "Lunedì": [
       { name: "Colazione: Yogurt 250g + frutta + avena 40g", calories: 420 },
       { name: "Pranzo: Pasta 100g + pollo 180g + verdure", calories: 750 },
@@ -70,4 +70,31 @@ const diets = {
     ],
     "Domenica": [
       { name: "Colazione: Pane + marmellata + frutta", calories: 380 },
-      {
+      { name: "Pranzo: Pasta 100g + carne magra 180g", calories: 750 },
+      { name: "Cena: Minestrone + crostini + formaggio leggero 40g", calories: 500 }
+    ]
+  }
+};
+
+document.getElementById("load-diet").addEventListener("click", () => {
+  const person = document.getElementById("person-select").value;
+  const day = document.getElementById("day-select").value;
+
+  if (!person || !day) return;
+
+  const meals = diets[person][day];
+  const mealList = document.getElementById("meal-list");
+  const totalCaloriesSpan = document.getElementById("total-calories");
+
+  mealList.innerHTML = "";
+  let total = 0;
+
+  meals.forEach(meal => {
+    const li = document.createElement("li");
+    li.textContent = `${meal.name} — ${meal.calories} kcal`;
+    mealList.appendChild(li);
+    total += meal.calories;
+  });
+
+  totalCaloriesSpan.textContent = total;
+});
