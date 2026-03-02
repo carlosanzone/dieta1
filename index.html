@@ -2,35 +2,45 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Dieta settimanale</title>
+  <title>Dieta settimanale – Carlo & Dona</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <h1>Dieta settimanale</h1>
-<select id="person-select">
-  <option value="">Seleziona persona</option>
-  <option value="Carlo">Carlo</option>
-  <option value="Dona">Dona</option>
-</select>
+  <div class="container">
 
+    <h1>Dieta settimanale</h1>
 
-  <select id="day-select">
-    <option value="">Seleziona un giorno</option>
-    <option value="Lunedì">Lunedì</option>
-    <option value="Martedì">Martedì</option>
-    <option value="Mercoledì">Mercoledì</option>
-    <option value="Giovedì">Giovedì</option>
-    <option value="Venerdì">Venerdì</option>
-    <option value="Sabato">Sabato</option>
-    <option value="Domenica">Domenica</option>
-  </select>
+    <!-- Selettore persona -->
+    <select id="person-select">
+      <option value="">Seleziona persona</option>
+      <option value="Carlo">Carlo</option>
+      <option value="Dona">Dona</option>
+    </select>
 
-  <button id="load-diet">Carica dieta del giorno</button>
+    <!-- Selettore giorno -->
+    <select id="day-select">
+      <option value="">Seleziona un giorno</option>
+      <option value="Lunedì">Lunedì</option>
+      <option value="Martedì">Martedì</option>
+      <option value="Mercoledì">Mercoledì</option>
+      <option value="Giovedì">Giovedì</option>
+      <option value="Venerdì">Venerdì</option>
+      <option value="Sabato">Sabato</option>
+      <option value="Domenica">Domenica</option>
+    </select>
 
-  <h2>Pasti del giorno</h2>
-  <ul id="meal-list"></ul>
+    <!-- Bottone -->
+    <button id="load-diet">Carica dieta del giorno</button>
 
-  <h3>Totale calorie: <span id="total-calories">0</span></h3>
+    <!-- Lista pasti -->
+    <h2>Pasti del giorno</h2>
+    <ul id="meal-list"></ul>
+
+    <!-- Totale calorie -->
+    <h3>Totale calorie: <span id="total-calories">0</span></h3>
+
+  </div>
 
   <script src="app.js"></script>
 </body>
