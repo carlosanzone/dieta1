@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dieta settimanale – Carlo & Dona</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="container">
 
-    <h1>Dieta settimanale</h1>
+  <h1>Dieta settimanale – Carlo & Dona</h1>
 
-    <select id="person-select">
-      <option value="">Seleziona persona</option>
-      <option value="Carlo">Carlo</option>
-      <option value="Dona">Dona</option>
-    </select>
+  <label for="person-select">Seleziona persona:</label>
+  <select id="person-select">
+    <option value="">-- Seleziona --</option>
+    <option value="Carlo">Carlo</option>
+    <option value="Dona">Dona</option>
+  </select>
 
-    <select id="day-select">
-      <option value="">Seleziona un giorno</option>
-      <option value="Lunedì">Lunedì</option>
-      <option value="Martedì">Martedì</option>
-      <option value="Mercoledì">Mercoledì</option>
-      <option value="Giovedì">Giovedì</option>
-      <option value="Venerdì">Venerdì</option>
-      <option value="Sabato">Sabato</option>
-      <option value="Domenica">Domenica</option>
-    </select>
+  <label for="day-select">Seleziona giorno:</label>
+  <select id="day-select">
+    <option value="">-- Seleziona --</option>
+    <option value="Lunedì">Lunedì</option>
+    <option value="Martedì">Martedì</option>
+    <option value="Mercoledì">Mercoledì</option>
+    <option value="Giovedì">Giovedì</option>
+    <option value="Venerdì">Venerdì</option>
+    <option value="Sabato">Sabato</option>
+    <option value="Domenica">Domenica</option>
+  </select>
 
-    <button id="load-diet">Carica dieta del giorno</button>
-<button id="show-shopping">Mostra lista spesa</button>
-<button id="show-shopping">Mostra lista spesa</button>
-<button id="print-shopping" style="display:none;">Stampa lista spesa</button>
+  <button id="load-diet">Carica dieta del giorno</button>
 
-<div id="shopping-list" class="shopping-list" style="display:none;"></div>
+  <!-- BOTTONI LISTA SPESA -->
+  <button id="show-shopping">Mostra lista spesa</button>
+  <button id="print-shopping" style="display:none;">Stampa lista spesa</button>
 
-<div id="shopping-list" class="shopping-list" style="display:none;"></div>
+  <!-- LISTA SPESA DINAMICA -->
+  <div id="shopping-list" class="shopping-list" style="display:none;"></div>
 
-    <h2>Pasti del giorno</h2>
-    <ul id="meal-list"></ul>
+  <h2>Pasti del giorno</h2>
+  <ul id="meal-list"></ul>
 
-    <h3>Totale calorie: <span id="total-calories">0</span></h3>
-
-  </div>
+  <h3>Totale calorie: <span id="total-calories">0</span></h3>
 
   <script src="app.js"></script>
+
 </body>
 </html>
