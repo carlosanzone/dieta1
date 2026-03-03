@@ -66,6 +66,41 @@ const diets = {
       { name: "Insalata tonno + mais + olio", calories: 500 },
       { name: "Yogurt 125g", calories: 90 },
       { name: "Zuppa di legumi + pane", calories: 420 }
+    ],
+    "Mercoledì": [
+      { name: "Frullato banana + latte + avena", calories: 350 },
+      { name: "Frutta secca", calories: 90 },
+      { name: "Riso basmati + uova + verdure", calories: 550 },
+      { name: "Crackers integrali", calories: 90 },
+      { name: "Tacchino + verdure + olio", calories: 450 }
+    ],
+    "Giovedì": [
+      { name: "Latte + biscotti integrali", calories: 300 },
+      { name: "Yogurt 125g", calories: 90 },
+      { name: "Farro + feta + verdure", calories: 520 },
+      { name: "Frutta 150g", calories: 80 },
+      { name: "Pollo + patate + insalata", calories: 450 }
+    ],
+    "Venerdì": [
+      { name: "Yogurt + frutta + semi", calories: 320 },
+      { name: "Mela", calories: 80 },
+      { name: "Pasta al pesto", calories: 550 },
+      { name: "Yogurt 125g", calories: 90 },
+      { name: "Merluzzo + verdure + olio", calories: 450 }
+    ],
+    "Sabato": [
+      { name: "Pancake + frutta", calories: 350 },
+      { name: "Mandarino", calories: 40 },
+      { name: "Cous cous + pollo + verdure", calories: 550 },
+      { name: "Yogurt 125g", calories: 90 },
+      { name: "Omelette + pane integrale", calories: 450 }
+    ],
+    "Domenica": [
+      { name: "Pane + marmellata + frutta", calories: 300 },
+      { name: "Mela", calories: 80 },
+      { name: "Pasta + carne magra", calories: 600 },
+      { name: "Crackers integrali", calories: 90 },
+      { name: "Minestrone + crostini", calories: 350 }
     ]
   }
 };
@@ -76,7 +111,7 @@ document.getElementById("load-diet").addEventListener("click", () => {
   const day = document.getElementById("day-select").value;
   if (!person || !day) return;
 
-  const meals = diets[person][day];
+  const meals = diets[person] && diets[person][day] ? diets[person][day] : [];
   const mealList = document.getElementById("meal-list");
   const totalCaloriesSpan = document.getElementById("total-calories");
 
@@ -99,7 +134,7 @@ document.getElementById("show-shopping").addEventListener("click", () => {
   const day = document.getElementById("day-select").value;
   if (!person || !day) return;
 
-  const meals = diets[person][day];
+  const meals = diets[person] && diets[person][day] ? diets[person][day] : [];
   const shoppingList = document.getElementById("shopping-list");
 
   shoppingList.innerHTML = "";
@@ -110,6 +145,7 @@ document.getElementById("show-shopping").addEventListener("click", () => {
     const parts = meal.name.split("+");
     parts.forEach(p => {
       const item = p.trim();
+      if (!item) return;
       if (!items[item]) items[item] = 0;
       items[item]++;
     });
@@ -122,14 +158,12 @@ document.getElementById("show-shopping").addEventListener("click", () => {
   });
 });
 
-// Lista spesa settimanale
+// Toggle lista spesa settimanale
 document.getElementById("toggle-week").addEventListener("click", () => {
   const person = document.getElementById("person-select").value;
   if (!person) return;
 
   const weeklyList = document.getElementById("weekly-list");
-
-  // Toggle visibilità
   weeklyList.classList.toggle("hidden");
 
   if (!weeklyList.classList.contains("hidden")) {
@@ -149,6 +183,7 @@ function generateWeeklyList(person) {
       const parts = meal.name.split("+");
       parts.forEach(p => {
         const item = p.trim();
+        if (!item) return;
         if (!items[item]) items[item] = 0;
         items[item]++;
       });
