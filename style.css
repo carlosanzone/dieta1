@@ -91,3 +91,17 @@ h3 {
   border-left: 4px solid #2a7f62;
   font-size: 16px;
 }
+#print-shopping {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #2a7f62;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#print-shopping:hover {
+  background: #256b54;
+}
