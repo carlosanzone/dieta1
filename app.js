@@ -1,4 +1,4 @@
-// DIETE PREDEFINITE (Carlo e Dona)
+// Diete predefinite per Carlo e Dona
 const diets = {
   Carlo: {
     "Lunedì": [
@@ -98,32 +98,4 @@ const diets = {
     "Domenica": [
       { name: "Colazione: Pane 2 fette + marmellata + frutta", calories: 300 },
       { name: "Spuntino 10:00: Mela", calories: 80 },
-      { name: "Pranzo: Pasta 80g + carne magra 150g", calories: 600 },
-      { name: "Spuntino 16:00: Crackers integrali 25g", calories: 90 },
-      { name: "Cena: Minestrone + crostini", calories: 350 }
-    ]
-  }
-};
-
-// Funzione per caricare la dieta selezionata e mostrare pasti + totale calorie
-document.getElementById("load-diet").addEventListener("click", () => {
-  const person = document.getElementById("person-select").value;
-  const day = document.getElementById("day-select").value;
-  if (!person || !day) return;
-
-  const meals = diets[person] && diets[person][day] ? diets[person][day] : [];
-  const mealList = document.getElementById("meal-list");
-  const totalCaloriesSpan = document.getElementById("total-calories");
-
-  mealList.innerHTML = "";
-  let total = 0;
-
-  meals.forEach(meal => {
-    const li = document.createElement("li");
-    li.textContent = `${meal.name} — ${meal.calories} kcal`;
-    mealList.appendChild(li);
-    total += meal.calories;
-  });
-
-  totalCaloriesSpan.textContent = total;
-});
+      { name: "Pranzo: Pasta 80g + carne mag
