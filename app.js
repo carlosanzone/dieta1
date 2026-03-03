@@ -1,39 +1,127 @@
-// Diete predefinite per Carlo e Dona
-const diets = {
-  Carlo: {
-    "Lunedì": [
-      { name: "Yogurt 300g", calories: 420 },
-      { name: "Banana 1", calories: 120 },
-      { name: "Avena 40g", calories: 120 },
-      { name: "Pasta integrale 120g", calories: 780 },
-      { name: "Pollo 200g", calories: 780 },
-      { name: "Verdure", calories: 0 },
-      { name: "Yogurt 150g", calories: 100 },
-      { name: "Merluzzo 220g", calories: 520 },
-      { name: "Insalata", calories: 0 },
-      { name: "Olio 1 cucchiaio", calories: 90 }
-    ],
-    "Martedì": [
-      { name: "Pane integrale 3 fette", calories: 420 },
-      { name: "Ricotta 60g", calories: 120 },
-      { name: "Miele 1 cucchiaio", calories: 60 },
-      { name: "Frutta secca 25g", calories: 150 },
-      { name: "Tonno 160g", calories: 650 },
-      { name: "Verdure", calories: 0 },
-      { name: "Olio 1 cucchiaio", calories: 90 },
-      { name: "Yogurt 150g", calories: 100 },
-      { name: "Zuppa di legumi 350g", calories: 520 },
-      { name: "Pane 40g", calories: 100 }
-    ],
-    // … (gli altri giorni restano identici alla tua versione)
-  },
+// -----------------------------
+// DIETA BASE (uguale per tutti)
+// -----------------------------
+const baseDiet = {
+  "Lunedì": [
+    "Yogurt 300g",
+    "Banana 1",
+    "Avena 40g",
+    "Pasta integrale 120g",
+    "Pollo 200g",
+    "Verdure",
+    "Yogurt 150g",
+    "Merluzzo 220g",
+    "Insalata",
+    "Olio 1 cucchiaio"
+  ],
 
-  Dona: {
-    // … (tutta la settimana come nella tua versione)
-  }
+  "Martedì": [
+    "Pane integrale 3 fette",
+    "Ricotta 60g",
+    "Miele 1 cucchiaio",
+    "Frutta secca 25g",
+    "Tonno 160g",
+    "Verdure",
+    "Olio 1 cucchiaio",
+    "Yogurt 150g",
+    "Zuppa di legumi 350g",
+    "Pane 40g"
+  ],
+
+  "Mercoledì": [
+    "Frullato banana + latte 250ml + avena 50g",
+    "Mela",
+    "Riso basmati 120g",
+    "Uova 3",
+    "Verdure",
+    "Crackers integrali 30g",
+    "Pollo 220g"
+  ],
+
+  "Giovedì": [
+    "Latte 250ml",
+    "Biscotti integrali 5",
+    "Yogurt 150g",
+    "Farro 120g",
+    "Feta 100g",
+    "Verdure",
+    "Frutta 150g",
+    "Tacchino 220g"
+  ],
+
+  "Venerdì": [
+    "Yogurt 250g",
+    "Frutta",
+    "Semi 30g",
+    "Mandarini 2",
+    "Pasta al pesto 120g",
+    "Yogurt 150g",
+    "Salmone 220g",
+    "Insalata"
+  ],
+
+  "Sabato": [
+    "Pancake integrali",
+    "Frutta",
+    "Miele 1 cucchiaio",
+    "Frutta secca 20g",
+    "Cous cous 120g",
+    "Pollo 200g",
+    "Verdure",
+    "Yogurt 150g",
+    "Omelette 3 uova",
+    "Pane integrale 1 fetta"
+  ],
+
+  "Domenica": [
+    "Pane 3 fette",
+    "Marmellata 20g",
+    "Frutta",
+    "Mela",
+    "Pasta 120g",
+    "Carne magra 200g",
+    "Crackers integrali 30g",
+    "Minestrone",
+    "Crostini 20g",
+    "Formaggio leggero 40g"
+  ]
 };
 
-// Carica dieta del giorno
+// --------------------------------------------
+// FUNZIONE: aumenta quantità del +20% arrotondato
+// --------------------------------------------
+function increaseQuantity(item) {
+  const match = item.match(/^(.+?)\s*([\d,.]+)\s*(g|ml|kg|l|pz|fette|cucchiaio|uova)?$/i);
+
+  if (!match) return item; // ingredienti senza quantità
+
+  const name = match[1].trim();
+  const qty = parseFloat(match[2].replace(",", "."));
+  const unit = match[3] || "";
+
+  const increased = Math.round(qty * 1.2);
+
+  return `${name} ${increased}${unit}`;
+}
+
+// --------------------------------------------
+// DIETE FINALI
+// --------------------------------------------
+const diets = {
+  Carlo: {},
+  Dona: baseDiet
+};
+
+// Carlo = baseDiet con +20%
+Object.keys(baseDiet).forEach(day => {
+  diets.Carlo[day] = baseDiet[day].map(item => increaseQuantity(item));
+});
+
+// --------------------------------------------
+// FUNZIONI APP
+// --------------------------------------------
+
+// Carica pasti del giorno
 document.getElementById("load-diet").addEventListener("click", () => {
   const person = document.getElementById("person-select").value;
   const day = document.getElementById("day-select").value;
@@ -41,19 +129,13 @@ document.getElementById("load-diet").addEventListener("click", () => {
 
   const meals = diets[person][day];
   const mealList = document.getElementById("meal-list");
-  const totalCaloriesSpan = document.getElementById("total-calories");
-
   mealList.innerHTML = "";
-  let total = 0;
 
   meals.forEach(meal => {
     const li = document.createElement("li");
-    li.textContent = `${meal.name} — ${meal.calories} kcal`;
+    li.textContent = meal;
     mealList.appendChild(li);
-    total += meal.calories;
   });
-
-  totalCaloriesSpan.textContent = total;
 });
 
 // Lista spesa del giorno
@@ -64,20 +146,11 @@ document.getElementById("show-shopping").addEventListener("click", () => {
 
   const meals = diets[person][day];
   const shoppingList = document.getElementById("shopping-list");
-
   shoppingList.innerHTML = "";
 
-  const items = {};
-
   meals.forEach(meal => {
-    const item = meal.name.trim();
-    if (!items[item]) items[item] = 1;
-    else items[item]++;
-  });
-
-  Object.keys(items).forEach(item => {
     const li = document.createElement("li");
-    li.textContent = item;
+    li.textContent = meal;
     shoppingList.appendChild(li);
   });
 });
@@ -95,49 +168,16 @@ document.getElementById("toggle-week").addEventListener("click", () => {
   }
 });
 
-// Lista settimanale con quantità totali
+// Lista settimanale
 function generateWeeklyList(person) {
   const weeklyList = document.getElementById("weekly-list");
   weeklyList.innerHTML = "";
 
-  const items = {};
-
   Object.keys(diets[person]).forEach(day => {
     diets[person][day].forEach(meal => {
-      const item = meal.name.trim();
-
-      const match = item.match(/^(.+?)\s*([\d,.]+)\s*(g|ml|kg|l|pz|fette|cucchiaio)?$/i);
-
-      if (match) {
-        const name = match[1].trim();
-        const qty = parseFloat(match[2].replace(",", "."));
-        const unit = match[3] ? match[3].toLowerCase() : "";
-
-        const key = name + "|" + unit;
-
-        if (!items[key]) items[key] = 0;
-        items[key] += qty;
-
-      } else {
-        const key = item + "|";
-        if (!items[key]) items[key] = 1;
-        else items[key]++;
-      }
+      const li = document.createElement("li");
+      li.textContent = meal;
+      weeklyList.appendChild(li);
     });
-  });
-
-  Object.keys(items).forEach(key => {
-    const [name, unit] = key.split("|");
-    const qty = items[key];
-
-    const li = document.createElement("li");
-
-    if (unit) {
-      li.textContent = `${name} ${qty}${unit}`;
-    } else {
-      li.textContent = `${name} (${qty} volte)`;
-    }
-
-    weeklyList.appendChild(li);
   });
 }
