@@ -1,61 +1,70 @@
-/* Lista spesa elegante */
-.shopping-list {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 12px;
-  font-family: "Segoe UI", Roboto, sans-serif;
-  color: #333;
-  line-height: 1.6;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dieta settimanale – Carlo & Dona</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-.shopping-list h2 {
-  margin-top: 30px;
-  font-size: 22px;
-  font-weight: 600;
-  color: #444;
-  border-bottom: 2px solid #e5e5e5;
-  padding-bottom: 6px;
-}
+<body>
 
-.shopping-list li {
-  padding: 8px 12px;
-  margin: 4px 0;
-  background: #f9f9f9;
-  border-radius: 6px;
-  border-left: 4px solid #2a7f62;
-}
+  <h1>Dieta settimanale – Carlo & Dona</h1>
 
-/* Personalizzazione dieta */
-#customize-panel {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
+  <label for="person-select">Seleziona persona:</label>
+  <select id="person-select">
+    <option value="">-- Seleziona --</option>
+    <option value="Carlo">Carlo</option>
+    <option value="Dona">Dona</option>
+  </select>
 
-#customize-panel select {
-  width: 100%;
-  padding: 8px;
-  margin: 10px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
+  <label for="day-select">Seleziona giorno:</label>
+  <select id="day-select">
+    <option value="">-- Seleziona --</option>
+    <option value="Lunedì">Lunedì</option>
+    <option value="Martedì">Martedì</option>
+    <option value="Mercoledì">Mercoledì</option>
+    <option value="Giovedì">Giovedì</option>
+    <option value="Venerdì">Venerdì</option>
+    <option value="Sabato">Sabato</option>
+    <option value="Domenica">Domenica</option>
+  </select>
 
-/* Storico diete */
-#history-panel {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
+  <button id="load-diet">Carica dieta del giorno</button>
+  <button id="customize-diet">Personalizza dieta del giorno</button>
+  <button id="show-history">Storico diete salvate</button>
 
-.history-item {
-  background: #f9f9f9;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-left: 4px solid #2a7f62;
-  border-radius: 6px;
-}
+  <button id="show-shopping">Mostra lista spesa</button>
+  <button id="print-shopping" style="display:none;">Stampa lista spesa</button>
+
+  <div id="shopping-list" class="shopping-list" style="display:none;"></div>
+
+  <h2>Pasti del giorno</h2>
+  <ul id="meal-list"></ul>
+
+  <h3>Totale calorie: <span id="total-calories">0</span></h3>
+
+  <!-- Pannello personalizzazione -->
+  <div id="customize-panel" style="display:none; margin-top:20px;">
+    <h2>Personalizza i pasti</h2>
+    <div id="customize-content"></div>
+
+    <h3>Aggiungi un pasto manualmente</h3>
+    <input id="manual-name" placeholder="Nome pasto">
+    <input id="manual-cal" placeholder="Calorie" type="number">
+    <button id="add-manual">Aggiungi pasto</button>
+
+    <button id="save-custom-diet" style="margin-top:20px;">Salva dieta personalizzata</button>
+    <button id="reset-custom-diet">Reset dieta originale</button>
+  </div>
+
+  <!-- Storico diete -->
+  <div id="history-panel" style="display:none; margin-top:20px;">
+    <h2>Storico diete salvate</h2>
+    <div id="history-content"></div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
