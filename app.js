@@ -134,13 +134,16 @@ document.getElementById("load-diet").addEventListener("click", () => {
 
   totalCaloriesSpan.textContent = total;
 });
-// MOSTRA / NASCONDI LISTA SPESA
+
+// =========================
+// LISTA SPESA + MOSTRA/NASCONDI + STAMPA
+// =========================
+
 document.getElementById("show-shopping").addEventListener("click", () => {
   const listDiv = document.getElementById("shopping-list");
   const printBtn = document.getElementById("print-shopping");
   const btn = document.getElementById("show-shopping");
 
-  // Se è visibile → la nascondo
   if (listDiv.style.display === "block") {
     listDiv.style.display = "none";
     printBtn.style.display = "none";
@@ -148,7 +151,6 @@ document.getElementById("show-shopping").addEventListener("click", () => {
     return;
   }
 
-  // Se è nascosta → la mostro
   listDiv.style.display = "block";
   printBtn.style.display = "inline-block";
   btn.textContent = "Nascondi lista spesa";
@@ -251,4 +253,3 @@ document.getElementById("print-shopping").addEventListener("click", () => {
   win.document.close();
   win.print();
 });
-
