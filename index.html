@@ -45,6 +45,14 @@
       background: #2980b9;
     }
 
+    #toggle-week {
+      background: #27ae60;
+    }
+
+    #toggle-week:hover {
+      background: #1e8449;
+    }
+
     h2 {
       margin-top: 30px;
       color: #34495e;
@@ -72,9 +80,18 @@
       font-weight: bold;
     }
 
+    #weekly-list li {
+      color: #8e44ad;
+      font-weight: bold;
+    }
+
     #total-calories {
       color: #e74c3c;
       font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -107,15 +124,19 @@
   <br>
 
   <button id="load-diet">Carica dieta del giorno</button>
-  <button id="show-shopping">Mostra lista spesa</button>
+  <button id="show-shopping">Lista spesa del giorno</button>
+  <button id="toggle-week">Mostra lista spesa settimanale</button>
 
   <h2>Pasti del giorno</h2>
   <ul id="meal-list"></ul>
 
   <h3>Totale calorie: <span id="total-calories">0</span></h3>
 
-  <h2>Lista spesa</h2>
+  <h2>Lista spesa del giorno</h2>
   <ul id="shopping-list"></ul>
+
+  <h2>Lista spesa settimanale</h2>
+  <ul id="weekly-list" class="hidden"></ul>
 
   <script src="app.js"></script>
 
