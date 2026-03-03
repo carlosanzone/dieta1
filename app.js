@@ -1,4 +1,7 @@
+// =========================
 // DIETE COMPLETE CON SPUNTINI
+// =========================
+
 const diets = {
   Carlo: {
     "Lunedì": [
@@ -105,7 +108,10 @@ const diets = {
   }
 };
 
+// =========================
 // CARICA DIETA
+// =========================
+
 document.getElementById("load-diet").addEventListener("click", () => {
   const person = document.getElementById("person-select").value;
   const day = document.getElementById("day-select").value;
@@ -129,76 +135,75 @@ document.getElementById("load-diet").addEventListener("click", () => {
   totalCaloriesSpan.textContent = total;
 });
 
-// LISTA SPESA AUTOMATICA
+// =========================
+// LISTA SPESA + STAMPA
+// =========================
+
 document.getElementById("show-shopping").addEventListener("click", () => {
   const listDiv = document.getElementById("shopping-list");
+  const printBtn = document.getElementById("print-shopping");
+
   listDiv.style.display = "block";
+  printBtn.style.display = "inline-block";
+
   listDiv.innerHTML = "";
 
   const categories = {
-    "🥩 Proteine": [],
-    "🍝 Carboidrati": [],
-    "🥦 Verdure e Legumi": [],
-    "🥛 Latticini": [],
-    "🍎 Frutta": [],
-    "🥜 Spuntini": [],
-    "🧂 Dispensa": []
+    "🥩 Proteine": [
+      "Pollo – 3,2 kg",
+      "Tacchino – 1,1 kg",
+      "Merluzzo – 1,1 kg",
+      "Salmone – 1,1 kg",
+      "Carne magra – 550 g",
+      "Tonno – 280 g",
+      "Uova – 38",
+      "Feta – 180 g",
+      "Formaggio leggero – 40 g"
+    ],
+    "🍝 Carboidrati": [
+      "Pasta integrale – 120 g",
+      "Pasta normale – 360 g",
+      "Pasta per pesto – 200 g",
+      "Riso basmati – 400 g",
+      "Farro – 200 g",
+      "Cous cous – 200 g",
+      "Pane integrale – 20 fette",
+      "Pane normale – 5 fette",
+      "Avena – 350 g",
+      "Biscotti integrali – 9",
+      "Crackers integrali – 200 g",
+      "Crostini – 2 confezioni"
+    ],
+    "🥦 Verdure e Legumi": [
+      "Verdure miste – 6 kg",
+      "Insalata – 8 buste",
+      "Patate – 900 g",
+      "Zuppa di legumi – 850 g",
+      "Mais – 1 scatola"
+    ],
+    "🥛 Latticini": [
+      "Yogurt – 4,5 kg",
+      "Ricotta – 100 g",
+      "Latte – 1,5 litri"
+    ],
+    "🍎 Frutta": [
+      "Frutta mista – 4 kg",
+      "Banane – 6",
+      "Mele – 7",
+      "Mandarini – 6"
+    ],
+    "🥜 Spuntini": [
+      "Mandorle – 200 g",
+      "Frutta secca mista – 200 g",
+      "Semi vari – 50 g"
+    ],
+    "🧂 Dispensa": [
+      "Olio extravergine d’oliva – 2 bottiglie",
+      "Marmellata – 1 vasetto",
+      "Miele – 1 vasetto"
+    ]
   };
 
-  const addItem = (category, item) => {
-    if (!categories[category].includes(item)) {
-      categories[category].push(item);
-    }
-  };
-
-  // Ingredienti fissi della tua lista (aggiornati)
-  addItem("🥩 Proteine", "Pollo – 3,2 kg");
-  addItem("🥩 Proteine", "Tacchino – 1,1 kg");
-  addItem("🥩 Proteine", "Merluzzo – 1,1 kg");
-  addItem("🥩 Proteine", "Salmone – 1,1 kg");
-  addItem("🥩 Proteine", "Carne magra – 550 g");
-  addItem("🥩 Proteine", "Tonno – 280 g");
-  addItem("🥩 Proteine", "Uova – 38");
-  addItem("🥩 Proteine", "Feta – 180 g");
-  addItem("🥩 Proteine", "Formaggio leggero – 40 g");
-
-  addItem("🍝 Carboidrati", "Pasta integrale – 120 g");
-  addItem("🍝 Carboidrati", "Pasta normale – 360 g");
-  addItem("🍝 Carboidrati", "Pasta per pesto – 200 g");
-  addItem("🍝 Carboidrati", "Riso basmati – 400 g");
-  addItem("🍝 Carboidrati", "Farro – 200 g");
-  addItem("🍝 Carboidrati", "Cous cous – 200 g");
-  addItem("🍝 Carboidrati", "Pane integrale – 20 fette");
-  addItem("🍝 Carboidrati", "Pane normale – 5 fette");
-  addItem("🍝 Carboidrati", "Avena – 350 g");
-  addItem("🍝 Carboidrati", "Biscotti integrali – 9");
-  addItem("🍝 Carboidrati", "Crackers integrali – 200 g");
-  addItem("🍝 Carboidrati", "Crostini – 2 confezioni");
-
-  addItem("🥦 Verdure e Legumi", "Verdure miste – 6 kg");
-  addItem("🥦 Verdure e Legumi", "Insalata – 8 buste");
-  addItem("🥦 Verdure e Legumi", "Patate – 900 g");
-  addItem("🥦 Verdure e Legumi", "Zuppa di legumi – 850 g");
-  addItem("🥦 Verdure e Legumi", "Mais – 1 scatola");
-
-  addItem("🥛 Latticini", "Yogurt – 4,5 kg");
-  addItem("🥛 Latticini", "Ricotta – 100 g");
-  addItem("🥛 Latticini", "Latte – 1,5 litri");
-
-  addItem("🍎 Frutta", "Frutta mista – 4 kg");
-  addItem("🍎 Frutta", "Banane – 6");
-  addItem("🍎 Frutta", "Mele – 7");
-  addItem("🍎 Frutta", "Mandarini – 6");
-
-  addItem("🥜 Spuntini", "Mandorle – 200 g");
-  addItem("🥜 Spuntini", "Frutta secca mista – 200 g");
-  addItem("🥜 Spuntini", "Semi vari – 50 g");
-
-  addItem("🧂 Dispensa", "Olio extravergine d’oliva – 2 bottiglie");
-  addItem("🧂 Dispensa", "Marmellata – 1 vasetto");
-  addItem("🧂 Dispensa", "Miele – 1 vasetto");
-
-  // GENERA HTML
   Object.keys(categories).forEach(cat => {
     const h2 = document.createElement("h2");
     h2.textContent = cat;
@@ -215,4 +220,27 @@ document.getElementById("show-shopping").addEventListener("click", () => {
   });
 });
 
-
+// STAMPA LISTA SPESA
+document.getElementById("print-shopping").addEventListener("click", () => {
+  const printContent = document.getElementById("shopping-list").innerHTML;
+  const win = window.open("", "", "width=800,height=900");
+  win.document.write(`
+    <html>
+      <head>
+        <title>Lista della Spesa</title>
+        <style>
+          body { font-family: 'Segoe UI', sans-serif; padding: 20px; }
+          h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+          ul { list-style: none; padding-left: 0; }
+          li { padding: 6px 10px; margin: 4px 0; background: #f5f5f5; border-left: 4px solid #2a7f62; }
+        </style>
+      </head>
+      <body>
+        <h1>Lista della Spesa</h1>
+        ${printContent}
+      </body>
+    </html>
+  `);
+  win.document.close();
+  win.print();
+});
