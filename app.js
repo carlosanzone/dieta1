@@ -129,4 +129,90 @@ document.getElementById("load-diet").addEventListener("click", () => {
   totalCaloriesSpan.textContent = total;
 });
 
+// LISTA SPESA AUTOMATICA
+document.getElementById("show-shopping").addEventListener("click", () => {
+  const listDiv = document.getElementById("shopping-list");
+  listDiv.style.display = "block";
+  listDiv.innerHTML = "";
+
+  const categories = {
+    "🥩 Proteine": [],
+    "🍝 Carboidrati": [],
+    "🥦 Verdure e Legumi": [],
+    "🥛 Latticini": [],
+    "🍎 Frutta": [],
+    "🥜 Spuntini": [],
+    "🧂 Dispensa": []
+  };
+
+  const addItem = (category, item) => {
+    if (!categories[category].includes(item)) {
+      categories[category].push(item);
+    }
+  };
+
+  // Ingredienti fissi della tua lista (aggiornati)
+  addItem("🥩 Proteine", "Pollo – 3,2 kg");
+  addItem("🥩 Proteine", "Tacchino – 1,1 kg");
+  addItem("🥩 Proteine", "Merluzzo – 1,1 kg");
+  addItem("🥩 Proteine", "Salmone – 1,1 kg");
+  addItem("🥩 Proteine", "Carne magra – 550 g");
+  addItem("🥩 Proteine", "Tonno – 280 g");
+  addItem("🥩 Proteine", "Uova – 38");
+  addItem("🥩 Proteine", "Feta – 180 g");
+  addItem("🥩 Proteine", "Formaggio leggero – 40 g");
+
+  addItem("🍝 Carboidrati", "Pasta integrale – 120 g");
+  addItem("🍝 Carboidrati", "Pasta normale – 360 g");
+  addItem("🍝 Carboidrati", "Pasta per pesto – 200 g");
+  addItem("🍝 Carboidrati", "Riso basmati – 400 g");
+  addItem("🍝 Carboidrati", "Farro – 200 g");
+  addItem("🍝 Carboidrati", "Cous cous – 200 g");
+  addItem("🍝 Carboidrati", "Pane integrale – 20 fette");
+  addItem("🍝 Carboidrati", "Pane normale – 5 fette");
+  addItem("🍝 Carboidrati", "Avena – 350 g");
+  addItem("🍝 Carboidrati", "Biscotti integrali – 9");
+  addItem("🍝 Carboidrati", "Crackers integrali – 200 g");
+  addItem("🍝 Carboidrati", "Crostini – 2 confezioni");
+
+  addItem("🥦 Verdure e Legumi", "Verdure miste – 6 kg");
+  addItem("🥦 Verdure e Legumi", "Insalata – 8 buste");
+  addItem("🥦 Verdure e Legumi", "Patate – 900 g");
+  addItem("🥦 Verdure e Legumi", "Zuppa di legumi – 850 g");
+  addItem("🥦 Verdure e Legumi", "Mais – 1 scatola");
+
+  addItem("🥛 Latticini", "Yogurt – 4,5 kg");
+  addItem("🥛 Latticini", "Ricotta – 100 g");
+  addItem("🥛 Latticini", "Latte – 1,5 litri");
+
+  addItem("🍎 Frutta", "Frutta mista – 4 kg");
+  addItem("🍎 Frutta", "Banane – 6");
+  addItem("🍎 Frutta", "Mele – 7");
+  addItem("🍎 Frutta", "Mandarini – 6");
+
+  addItem("🥜 Spuntini", "Mandorle – 200 g");
+  addItem("🥜 Spuntini", "Frutta secca mista – 200 g");
+  addItem("🥜 Spuntini", "Semi vari – 50 g");
+
+  addItem("🧂 Dispensa", "Olio extravergine d’oliva – 2 bottiglie");
+  addItem("🧂 Dispensa", "Marmellata – 1 vasetto");
+  addItem("🧂 Dispensa", "Miele – 1 vasetto");
+
+  // GENERA HTML
+  Object.keys(categories).forEach(cat => {
+    const h2 = document.createElement("h2");
+    h2.textContent = cat;
+    listDiv.appendChild(h2);
+
+    const ul = document.createElement("ul");
+    categories[cat].forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+
+    listDiv.appendChild(ul);
+  });
+});
+
 
